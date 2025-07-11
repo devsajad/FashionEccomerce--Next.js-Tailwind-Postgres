@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ShoppingCart, UserIcon } from "lucide-react";
+import ModeToggle from "./ui/ModeToggle";
 
 export default function Header() {
   return (
@@ -23,6 +24,8 @@ export default function Header() {
           </Link>
         </div>
         <div className="space-x-2">
+          <ModeToggle />
+
           <Button asChild variant="ghost">
             <Link href={"/sign-in"}>
               <ShoppingCart />
