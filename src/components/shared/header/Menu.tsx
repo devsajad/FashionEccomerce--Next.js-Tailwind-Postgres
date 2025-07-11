@@ -2,7 +2,13 @@ import ModeToggle from "@/components/ui/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
 import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../ui/sheet";
 
 export default function Menu() {
   return (
@@ -10,7 +16,7 @@ export default function Menu() {
       <nav className="hidden md:flex w-full max-w-xs gap-2">
         <ModeToggle />
 
-        <Button asChild variant="ghost">
+        <Button asChild variant="outline">
           <Link href={"/sign-in"}>
             <ShoppingCart />
             <span className="text-xs md:text-sm">سبدخرید</span>
@@ -32,10 +38,16 @@ export default function Menu() {
           </SheetTrigger>
 
           <SheetContent className="flex flex-col items-start">
-            <div className="w-full justify-end flex gap-2 mt-2 pl-2">
+            <SheetHeader className="mt-10 text-sm">
+              <SheetTitle className="font-light border-b pb-1">
+                منوکاربری
+              </SheetTitle>
+            </SheetHeader>
+
+            <div className="w-full justify-end flex-col flex-row-reverse flex gap-2 pr-2">
               <ModeToggle />
 
-              <Button asChild variant="ghost">
+              <Button asChild variant="outline">
                 <Link href={"/sign-in"}>
                   <ShoppingCart />
                   <span className="text-xs md:text-sm">سبدخرید</span>
