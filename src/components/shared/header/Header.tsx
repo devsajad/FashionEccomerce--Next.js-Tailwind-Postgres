@@ -1,9 +1,7 @@
 import { APP_NAME } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { ShoppingCart, UserIcon } from "lucide-react";
-import ModeToggle from "./ui/ModeToggle";
+import Menu from "./Menu";
 
 export default function Header() {
   return (
@@ -23,22 +21,8 @@ export default function Header() {
             </span>
           </Link>
         </div>
-        <div className="space-x-2">
-          <ModeToggle />
 
-          <Button asChild variant="ghost">
-            <Link href={"/sign-in"}>
-              <ShoppingCart />
-              <span className="text-xs md:text-sm">سبدخرید</span>
-            </Link>
-          </Button>
-          <Button asChild variant="default">
-            <Link href={"/sign-in"}>
-              <UserIcon />
-              <span className="text-xs md:text-sm">ورود</span>
-            </Link>
-          </Button>
-        </div>
+        <Menu />
       </div>
     </header>
   );

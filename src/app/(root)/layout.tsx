@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/shared/header/Header";
 import Footer from "@/components/ui/Footer";
 
 export default function RootLayout({
