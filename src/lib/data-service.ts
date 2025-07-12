@@ -1,4 +1,3 @@
-import { PrismaClient } from "../../generated/prisma";
 import { convertToPlainObject } from "./utils";
 import { prisma } from "@/db/prisma";
 
