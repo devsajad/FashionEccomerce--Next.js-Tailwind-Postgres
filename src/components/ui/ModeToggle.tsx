@@ -1,9 +1,5 @@
 "use client";
 
-import React from "react";
-
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoonIcon, SunIcon, SunMoon } from "lucide-react";
-import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function ModeToggle() {
   const { theme, setTheme } = useTheme();

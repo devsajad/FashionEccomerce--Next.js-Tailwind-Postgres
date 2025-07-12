@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductItem({ product }: { product: any }) {
   return (
-    <Card className="w-[250px] md:w-full mx-auto py-0">
+    <Card className="w-[270px] sm:w-full mx-auto py-0">
       <CardHeader className="p-0 items-center">
         <Link href={`/product/${product.slug}`}>
           <div className="relative w-full h-65 rounded-xl">
@@ -27,9 +28,12 @@ export default function ProductItem({ product }: { product: any }) {
         <div className="flex-between gap-4">
           <p>{product.rating} امتیاز</p>
           {product.stock > 0 ? (
-            <p className="font-bold">{product.price} تومان</p>
+            <p className="font-bold">
+              {formatPrice(product.price)}{" "}
+              <span className="align-super text-xs font-medium">تومان</span>
+            </p>
           ) : (
-            <p className="text-destructive">اتمام موجودی</p>
+            <p className="text-destructive text-xs">اتمام موجودی</p>
           )}
         </div>
       </CardContent>

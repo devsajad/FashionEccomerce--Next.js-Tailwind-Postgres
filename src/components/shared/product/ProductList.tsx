@@ -8,7 +8,7 @@ export default function ProductList({
 }: {
   title?: string;
   data: any;
-  limit?: string;
+  limit?: number;
 }) {
   const limitedData = limit ? data.slice(0, limit) : data;
   return (

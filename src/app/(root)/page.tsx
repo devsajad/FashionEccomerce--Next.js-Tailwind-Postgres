@@ -1,6 +1,7 @@
 import ProductList from "@/components/shared/product/ProductList";
-import sampleData from "@/data/sample-data";
+import { getProducts } from "@/lib/data-service";
 
 export default async function page() {
-  return <ProductList title="جدیدترین محصولات" data={sampleData.products} />;
+  const data = await getProducts();
+  return <ProductList title="جدیدترین محصولات" data={data} limit={4} />;
 }
