@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { APP_NAME } from "@/lib/constants/index.ts";
+import { APP_NAME } from "@/lib/constants/index";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
