@@ -15,7 +15,7 @@ export default function ImageGallary({
 
   return (
     <div>
-      <div className="mb-2 relative w-full max-w-[350px] aspect-square mx-auto md:mx-0">
+      <div className="rounded-xl overflow-hidden mb-2 relative w-full max-w-[350px] aspect-square mx-auto md:mx-0">
         <Image
           src={images[curImage]}
           alt={`${alt} image`}

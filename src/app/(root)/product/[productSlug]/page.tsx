@@ -26,7 +26,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
 
   return (
     <section>
-      <div className="grid grid-cols-1 md:grid-cols-5 wrapper gap-y-12 md:gap-y-0">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-y-12 md:gap-y-0">
         {/* Image container */}
         <div className="md:col-span-2">
           <ImageGallary images={images} alt={name} />
@@ -50,7 +50,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
 
             <p className="font-bold bg-green-100 text-green-700 rounded-full p-2">
               {formatPrice(price)}
-              <span className="align-super text-xs font-light">تومان</span>
+              <span className="align-super text-xs font-light"> تومان </span>
             </p>
           </div>
 
