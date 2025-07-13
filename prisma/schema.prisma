@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -13,22 +14,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// name: "پیراهن مردانه کشی پولو",
-// slug: "polo-sporting-stretch-shirt",
-// category: "پیراهن رسمی مردانه",
-// description: "استایل کلاسیک پولو با راحتی مدرن",
-// images: [
-//         "/images/sample-products/p1-1.jpg",
-//         "/images/sample-products/p1-2.jpg",
-// ],
-// price: 1850000,
-// brand: "Polo",
-// rating: 4.5,
-// numReviews: 12,
-// stock: 5,
-// isFeatured: true,
-// banner: "banner-1.jpg",
 
 model Product {
   id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
