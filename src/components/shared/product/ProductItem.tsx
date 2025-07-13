@@ -8,13 +8,14 @@ export default function ProductItem({ product }: { product: any }) {
     <Card className="w-[270px] sm:w-full mx-auto py-0">
       <CardHeader className="p-0 items-center">
         <Link href={`/product/${product.slug}`}>
-          <div className="relative w-full h-65 rounded-xl">
+          <div className="relative w-full md:h-70 h-65 rounded-xl overflow-hidden">
             <Image
               src={product.images[0]}
               alt={product.name}
               fill
               priority={true}
-              className="object-cover object-top rounded-xl"
+              sizes="(max-width: 768px) 100vw, 270px"
+              className="object-cover object-top"
             />
           </div>
         </Link>

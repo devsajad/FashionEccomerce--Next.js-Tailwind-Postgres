@@ -1,62 +1,36 @@
+import ImageGallary from "@/components/ImageGallary";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getProduct } from "@/lib/data-service";
 import { formatPrice } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
-const testProduct = {
-  name: "پیراهن مردانه کشی پولو",
-  slug: "polo-sporting-stretch-shirt",
-  category: "پیراهن رسمی مردانه",
-  description: "استایل کلاسیک پولو با راحتی مدرن",
-  images: [
-    "/images/sample-products/p1-1.jpg",
-    "/images/sample-products/p1-2.jpg",
-  ],
-  price: 1850000,
-  brand: "Polo",
-  rating: 4.5,
-  numReviews: 12,
-  stock: 5,
-  isFeatured: true,
-  banner: "banner-1.jpg",
-};
-
-const {
-  name,
-  slug,
-  category,
-  description,
-  images,
-  price,
-  brand,
-  rating,
-  numReviews,
-  stock,
-  isFeatured,
-  banner,
-} = testProduct;
-
 async function page({ params }: { params: Promise<{ productSlug: string }> }) {
-  // const { productSlug } = await params;
-  // const product = await getProduct(productSlug);
+  const { productSlug } = await params;
+  const product = await getProduct(productSlug);
 
-  // if (!product) notFound();
+  if (!product) notFound();
+
+  const {
+    name,
+    category,
+    description,
+    images,
+    price,
+    brand,
+    rating,
+    numReviews,
+    stock,
+  } = product;
 
   return (
     <section>
       <div className="grid grid-cols-1 md:grid-cols-5 wrapper gap-y-12 md:gap-y-0">
         {/* Image container */}
-        <div className="md:col-span-2"></div>
+        <div className="md:col-span-2">
+          <ImageGallary images={images} alt={name} />
+        </div>
 
         {/* Detail column */}
         <div className="col-span-2">
@@ -75,7 +49,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
             </div>
 
             <p className="font-bold bg-green-100 text-green-700 rounded-full p-2">
-              {formatPrice(price)}{" "}
+              {formatPrice(price)}
               <span className="align-super text-xs font-light">تومان</span>
             </p>
           </div>
