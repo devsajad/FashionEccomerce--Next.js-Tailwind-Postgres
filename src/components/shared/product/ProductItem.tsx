@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { formatPrice } from "@/lib/utils";
+import { ProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductItem({ product }: { product: any }) {
+export default function ProductItem({ product }: { product: ProductType }) {
   return (
     <Card className="w-[270px] sm:w-full mx-auto py-0">
       <CardHeader className="p-0 items-center">
