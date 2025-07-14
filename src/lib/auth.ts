@@ -6,10 +6,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [],
   callbacks: {
-    authorized({ request, auth }) {
+    authorized({ auth }) {
       if (!auth?.user) return false;
       return true;
     },
-    
   },
 });
