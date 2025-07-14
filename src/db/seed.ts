@@ -3,6 +3,7 @@ import {
   brandsToCreate,
   categoriesToCreate,
   productsToCreate,
+  usersToCreate,
 } from "./sample-data";
 
 async function main() {
@@ -12,20 +13,22 @@ async function main() {
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
   await prisma.brand.deleteMany();
+  await prisma.user.deleteMany();
   console.log("Cleared previous data.");
 
-  // Create brands
+  // ---- Create brands
   await prisma.brand.createMany({
     data: brandsToCreate,
   });
   console.log("Created brands.");
 
-  // Create categories
+  // ---- Create categories
   await prisma.category.createMany({
     data: categoriesToCreate,
   });
   console.log("Created categories.");
 
+  // ----- Creating products
   // Fetch the created brands and categories to get their IDs
   const brands = await prisma.brand.findMany();
   const categories = await prisma.category.findMany();
@@ -56,6 +59,12 @@ async function main() {
     });
   }
   console.log("Created products.");
+
+  // --- Creating user
+  await prisma.user.createMany({
+    data: usersToCreate,
+  });
+  console.log("Created users.");
 
   console.log("Seeding finished.");
 }

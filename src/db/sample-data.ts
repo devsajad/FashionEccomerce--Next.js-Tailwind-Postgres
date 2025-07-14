@@ -1,3 +1,6 @@
+import { hashSync } from "bcrypt-ts-edge";
+import { Role } from "@prisma/client";
+
 export const brandsToCreate = [
   { name: "Polo" },
   { name: "Brooks Brothers" },
@@ -112,5 +115,20 @@ export const productsToCreate = [
     banner: null,
     brandName: "Polo",
     categoryName: "هودی و سویشرت مردانه",
+  },
+];
+
+export const usersToCreate = [
+  {
+    name: "admin",
+    email: "admin@mail.com",
+    password: hashSync("123456", 10),
+    role: Role.ADMIN,
+  },
+  {
+    name: "user",
+    email: "user@mail.com",
+    password: hashSync("123456", 10),
+    role: Role.USER,
   },
 ];
