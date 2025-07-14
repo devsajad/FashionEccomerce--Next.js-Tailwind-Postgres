@@ -37,7 +37,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
           <div className="flex flex-col gap-6 items-start">
             <div className="space-y-2">
               <p className="text-sm md:text-md font-light">
-                {brand} | {category}
+                {brand.name} | {category.name}
               </p>
               <h1 className="h3-bold">{name} kz</h1>
             </div>
