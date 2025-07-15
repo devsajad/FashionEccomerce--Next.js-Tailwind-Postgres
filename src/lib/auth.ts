@@ -8,6 +8,11 @@ import { Role } from "@prisma/client";
 // Define the configuration as a separate object to satisfy TypeScript
 export const config: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/signin",
+    error: "/signin",
+  },
+
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days

@@ -20,3 +20,14 @@ export const InsertProductSchema = z.object({
   banner: z.string().nullable(),
   price: z.number().min(1000, "قیمت باید حداقل ۱,۰۰۰ تومان باشد"),
 });
+
+export const signInUserSchema = z.object({
+  email: z.email("لطفا یک ایمیل معتبر وارد کنید."),
+
+  password: z
+    .string("رمز عبور الزامی است.")
+    .min(6, "رمز عبور باید حداقل 6 کاراکتر باشد.")
+    .regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, {
+      message: "رمز عبور باید ترکیبی از حروف و اعداد باشد.",
+    }),
+});
