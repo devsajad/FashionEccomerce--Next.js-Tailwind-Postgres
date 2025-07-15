@@ -5,7 +5,6 @@ import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcrypt-ts-edge";
 import { Role } from "@prisma/client";
 
-// Define the configuration as a separate object to satisfy TypeScript
 export const config: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
   pages: {
@@ -21,10 +20,10 @@ export const config: NextAuthConfig = {
   providers: [
     Credentials({
       credentials: {
-        // Changed 'username' to 'email' to match what we expect
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: "email", type: "email" },
+        password: { label: "password", type: "password" },
       },
+      
       async authorize(credentials) {
         // 1. Validate that you received email and password
         if (!credentials?.email || !credentials.password) {
