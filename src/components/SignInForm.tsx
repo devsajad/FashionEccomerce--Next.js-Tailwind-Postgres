@@ -9,6 +9,7 @@ import {
 } from "@/lib/actions/user.action";
 import { useActionState } from "react";
 import ErrorForm from "./ErrorForm";
+import { useSearchParams } from "next/navigation";
 
 const initialState: SigninFormState = {
   success: false,
@@ -16,7 +17,6 @@ const initialState: SigninFormState = {
 };
 
 export default function SignInForm() {
-  
   const [state, action] = useActionState(signInWithCredential, initialState);
 
   return (
@@ -26,6 +26,7 @@ export default function SignInForm() {
           ایمیل
         </Label>
         <Input
+          defaultValue={"admin@mail.com"}
           autoComplete="email"
           id="email"
           type="text"
@@ -47,6 +48,7 @@ export default function SignInForm() {
           پسورد
         </Label>
         <Input
+          defaultValue={123456}
           autoComplete="current-password"
           id="password"
           type="password"

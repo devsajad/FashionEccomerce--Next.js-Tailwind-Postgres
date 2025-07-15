@@ -1,5 +1,5 @@
 "use server";
-import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { signIn, signOut } from "../auth";
 import { signInUserSchema } from "../validators";
 
@@ -42,11 +42,17 @@ export async function signInWithCredential(
     await signIn("credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
-      redirect: false,
     });
 
-    redirect("/");
+    return {
+      success: true,
+      message: "ورود با موفقیت انجام شد!",
+    };
   } catch (error) {
+    // signIn will call authorize function and if user authorize , redirect page to callbackUrl
+    // redirect throw error that we should not catch it so we use :
+    if (isRedirectError(error)) throw error;
+
     return {
       success: false,
       message: "ایمیل یا رمز عبور نامعتبر است.",

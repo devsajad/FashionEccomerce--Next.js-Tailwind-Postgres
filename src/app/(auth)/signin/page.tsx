@@ -13,10 +13,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export default async function page() {
+export default async function page({
+  searchParams,
+}: {
+  searchParams: Promise<{ callbackUrl: string }>;
+}) {
   const session = await auth();
-
-  if (session?.user) redirect("/");
+  const { callbackUrl } = await searchParams;
+  if (session?.user) redirect(callbackUrl || "/");
 
   return (
     <div className="w-90/100 max-w-md mx-auto">
