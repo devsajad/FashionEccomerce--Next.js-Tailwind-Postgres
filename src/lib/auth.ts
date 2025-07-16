@@ -23,7 +23,7 @@ export const config: NextAuthConfig = {
         email: { label: "email", type: "email" },
         password: { label: "password", type: "password" },
       },
-      
+
       async authorize(credentials) {
         // 1. Validate that you received email and password
         if (!credentials?.email || !credentials.password) {

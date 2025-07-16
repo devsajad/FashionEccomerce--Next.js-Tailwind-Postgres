@@ -49,7 +49,7 @@ export const signUpUserSchema = z
       }),
     confirmPassword: z.string("تکرار رمز عبور الزامی است."),
   })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "رمزهای عبور با یکدیگر مطابقت ندارند.",
+  .refine((data) => data.confirmPassword === data.password, {
+    error: "رمزهای عبور با یکدیگر مطابقت ندارند.",
     path: ["confirmPassword"],
   });

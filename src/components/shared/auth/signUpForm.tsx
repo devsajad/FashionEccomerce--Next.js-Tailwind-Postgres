@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import {
   SigninFormState,
   signInWithCredential,
+  signUpUser,
 } from "@/lib/actions/user.action";
 import { useActionState } from "react";
 import ErrorForm from "./ErrorForm";
@@ -15,8 +16,8 @@ const initialState: SigninFormState = {
   message: "",
 };
 
-export default function SignInForm() {
-  const [state, action] = useActionState(signInWithCredential, initialState);
+export default function SignupForm() {
+  const [state, action] = useActionState(signUpUser, initialState);
 
   return (
     <form className="space-y-4" action={action}>
