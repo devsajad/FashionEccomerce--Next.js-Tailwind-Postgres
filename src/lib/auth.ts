@@ -64,6 +64,7 @@ export const config: NextAuthConfig = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.name = user.name;
       }
       return token;
     },
@@ -72,6 +73,7 @@ export const config: NextAuthConfig = {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as Role;
+        session.user.name = token.name as string;
       }
       if (trigger === "update") {
         session.user.name = user.name;
