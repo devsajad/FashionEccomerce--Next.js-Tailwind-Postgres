@@ -1,14 +1,13 @@
 "use client";
 
-import SubmitButton from "@/components/SubmitButton";
+import Form from "@/components/Form";
+import FormRow from "@/components/FormRow";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SigninFormState,
   signInWithCredential,
 } from "@/lib/actions/user.action";
 import { useActionState } from "react";
-import ErrorForm from "./ErrorForm";
 
 const initialState: SigninFormState = {
   success: false,
@@ -19,11 +18,8 @@ export default function SignInForm() {
   const [state, action] = useActionState(signInWithCredential, initialState);
 
   return (
-    <form className="space-y-4" action={action}>
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="email" className="text-base font-medium">
-          ایمیل
-        </Label>
+    <Form action={action} submitText="ورود به سایت" state={state}>
+      <FormRow state={state} label="ایمیل" fieldName="email">
         <Input
           defaultValue={"admin@mail.com"}
           autoComplete="email"
@@ -33,19 +29,9 @@ export default function SignInForm() {
           required
           dir="ltr"
         />
-        {state.errors?.email && (
-          <div className="space-y-1">
-            {state.errors.email.map((errorMessage, i) => (
-              <ErrorForm key={i}>{errorMessage}</ErrorForm>
-            ))}
-          </div>
-        )}
-      </div>
+      </FormRow>
 
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="password" className="text-base font-medium">
-          پسورد
-        </Label>
+      <FormRow state={state} label="پسورد" fieldName="password">
         <Input
           defaultValue={123456}
           autoComplete="current-password"
@@ -55,23 +41,7 @@ export default function SignInForm() {
           required
           dir="ltr"
         />
-        <div className="space-y-1">
-          {state.errors?.password && (
-            <div className="space-y-1">
-              {state.errors.password.map((errorMessage, i) => (
-                <ErrorForm key={i}>{errorMessage}</ErrorForm>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-      <SubmitButton />
-
-      <div className="text-center">
-        {state.message && !state.success && (
-          <ErrorForm>{state.message}</ErrorForm>
-        )}
-      </div>
-    </form>
+      </FormRow>
+    </Form>
   );
 }

@@ -1,10 +1,14 @@
 "use client";
 import React from "react";
-import { Button } from "./ui/button";
 import { useFormStatus } from "react-dom";
 import Spinner from "./Spinner";
+import { Button } from "./ui/button";
 
-export default function SubmitButton() {
+export default function FormSubmitBtn({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { pending } = useFormStatus();
 
   return (
@@ -13,7 +17,7 @@ export default function SubmitButton() {
       type="submit"
       className="w-full mt-2 h-10 cursor-pointer"
     >
-      {pending ? <Spinner size="mini" /> : <span>وارد شوید</span>}
+      {pending ? <Spinner size="mini" /> : <span>{children}</span>}
     </Button>
   );
 }

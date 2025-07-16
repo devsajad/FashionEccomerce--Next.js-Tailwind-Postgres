@@ -24,7 +24,7 @@ export default async function page({
 
   return (
     <div className="w-90/100 max-w-md mx-auto">
-      <Card>
+      <Card className="gap-0">
         <CardHeader className="flex flex-col items-center">
           <Link href={"/"}>
             <Image

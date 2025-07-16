@@ -1,5 +1,4 @@
-import SignInForm from "@/components/shared/auth/SignInForm";
-import SignupForm from "@/components/shared/auth/signUpForm";
+import SignUpForm from "@/components/shared/auth/signUpForm";
 import {
   Card,
   CardContent,
@@ -25,23 +24,24 @@ export default async function page({
 
   return (
     <div className="w-90/100 max-w-md mx-auto">
-      <Card>
+      <Card className="gap-0">
         <CardHeader className="flex flex-col items-center">
           <Link href={"/"}>
             <Image
               src={"/images/logo.svg"}
-              width={70}
-              height={70}
+              width={60}
+              height={60}
               alt={`${APP_NAME} logo`}
               priority
             />
           </Link>
-          <CardTitle className="font-bold text-xl md:text-2xl">عضویت</CardTitle>
+          <CardTitle className="font-bold text-lg md:text-xl">عضویت</CardTitle>
 
           <CardDescription>ثبت‌نام در {APP_NAME}</CardDescription>
         </CardHeader>
+
         <CardContent>
-          <SignupForm />
+          <SignUpForm />
         </CardContent>
 
         <CardFooter className="justify-center mt-2">
@@ -49,8 +49,7 @@ export default async function page({
             قبلا ثبت‌نام کرده‌اید ؟
             <span className="text-foreground font-base">
               <Link href={"/signin"} target="_self" className="link">
-                {" "}
-                وارد شوید{" "}
+                وارد شوید
               </Link>
             </span>
           </p>

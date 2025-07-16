@@ -1,32 +1,33 @@
 "use client";
 
-import SubmitButton from "@/components/SubmitButton";
+import Form from "@/components/Form";
+import FormRow from "@/components/FormRow";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  SigninFormState,
-  signInWithCredential,
-  signUpUser,
-} from "@/lib/actions/user.action";
+import { SigninFormState, signUpUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
-import ErrorForm from "./ErrorForm";
 
 const initialState: SigninFormState = {
   success: false,
   message: "",
 };
 
-export default function SignupForm() {
+export default function SignUpForm() {
   const [state, action] = useActionState(signUpUser, initialState);
 
   return (
-    <form className="space-y-4" action={action}>
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="email" className="text-base font-medium">
-          ایمیل
-        </Label>
+    <Form action={action} submitText="ثبت نام" state={state}>
+      <FormRow state={state} label="نام" fieldName="name">
         <Input
-          defaultValue={"admin@mail.com"}
+          autoComplete="name"
+          id="name"
+          type="text"
+          name="name"
+          required
+          dir="rtl"
+        />
+      </FormRow>
+      <FormRow state={state} label="ایمیل" fieldName="email">
+        <Input
           autoComplete="email"
           id="email"
           type="text"
@@ -34,21 +35,10 @@ export default function SignupForm() {
           required
           dir="ltr"
         />
-        {state.errors?.email && (
-          <div className="space-y-1">
-            {state.errors.email.map((errorMessage, i) => (
-              <ErrorForm key={i}>{errorMessage}</ErrorForm>
-            ))}
-          </div>
-        )}
-      </div>
+      </FormRow>
 
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="password" className="text-base font-medium">
-          پسورد
-        </Label>
+      <FormRow state={state} label="پسورد" fieldName="password">
         <Input
-          defaultValue={123456}
           autoComplete="current-password"
           id="password"
           type="password"
@@ -56,23 +46,17 @@ export default function SignupForm() {
           required
           dir="ltr"
         />
-        <div className="space-y-1">
-          {state.errors?.password && (
-            <div className="space-y-1">
-              {state.errors.password.map((errorMessage, i) => (
-                <ErrorForm key={i}>{errorMessage}</ErrorForm>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-      <SubmitButton />
-
-      <div className="text-center">
-        {state.message && !state.success && (
-          <ErrorForm>{state.message}</ErrorForm>
-        )}
-      </div>
-    </form>
+      </FormRow>
+      <FormRow state={state} label="تکرار پسورد" fieldName="confirmPassword">
+        <Input
+          autoComplete="current-password"
+          id="password"
+          type="password"
+          name="confirmPassword"
+          required
+          dir="ltr"
+        />
+      </FormRow>
+    </Form>
   );
 }
