@@ -77,6 +77,10 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+  button,
+  a {
+    @apply cursor-pointer;
+  }
   * {
     @apply border-border outline-ring/50;
   }
