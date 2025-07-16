@@ -31,3 +31,25 @@ export const signInUserSchema = z.object({
   //   message: "رمز عبور باید ترکیبی از حروف و اعداد باشد.",
   // }),
 });
+
+export const signUpUserSchema = z
+  .object({
+    name: z
+      .string("نام الزامی است.")
+      .min(3, "نام باید حداقل ۳ کاراکتر باشد.")
+      .max(30, "نام نمی‌تواند بیشتر از ۳۰ کاراکتر باشد."),
+
+    email: z.email("لطفا یک ایمیل معتبر وارد کنید."),
+
+    password: z
+      .string("رمز عبور الزامی است.")
+      .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد.")
+      .regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, {
+        message: "رمز عبور باید ترکیبی از حروف و اعداد باشد.",
+      }),
+    confirmPassword: z.string("تکرار رمز عبور الزامی است."),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "رمزهای عبور با یکدیگر مطابقت ندارند.",
+    path: ["confirmPassword"],
+  });

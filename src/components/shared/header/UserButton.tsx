@@ -34,7 +34,7 @@ export default async function UserButton() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start" className="w-56" forceMount>
+      <DropdownMenuContent align="start" className="min-w-56" forceMount>
         <DropdownMenuLabel className="text-center">
           <div className="flex flex-col gap-1">
             <p className=" font-medium text-sm leading-none">
