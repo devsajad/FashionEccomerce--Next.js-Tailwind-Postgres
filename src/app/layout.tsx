@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/constants";
 import { ThemeProvider } from "next-themes";
-
-const VazirSans = Vazirmatn({
-  variable: "--font-vazir-sans",
-  subsets: ["arabic"],
-  display: "swap",
-});
 
 const EstedadSans = localFont({
   src: "./fonts/Estedad-FD.woff2",
@@ -33,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
-      <body
-        className={`${VazirSans.variable} ${EstedadSans.variable} antialiased`}
-      >
+      <body className={`${EstedadSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

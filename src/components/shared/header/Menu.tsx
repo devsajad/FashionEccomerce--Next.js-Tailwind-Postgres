@@ -9,26 +9,22 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
+import UserButton from "./UserButton";
 
 export default function Menu() {
   return (
     <div className="flex gap-3">
-      <nav className="hidden md:flex w-full max-w-xs gap-2">
+      <nav className="hidden md:flex w-full max-w-xs gap-2 items-center">
         <ModeToggle />
 
-        <Button asChild variant="outline">
+        <Button asChild variant="ghost">
           <Link href={"/sign-in"}>
             <ShoppingCart />
             <span className="text-xs md:text-sm">سبدخرید</span>
           </Link>
         </Button>
 
-        <Button asChild variant="default">
-          <Link href={"/sign-in"}>
-            <UserIcon />
-            <span className="text-xs md:text-sm">ورود</span>
-          </Link>
-        </Button>
+        <UserButton />
       </nav>
 
       <nav className="md:hidden">
@@ -44,22 +40,17 @@ export default function Menu() {
               </SheetTitle>
             </SheetHeader>
 
-            <div className="w-full justify-end flex-col flex-row-reverse flex gap-2 pr-2">
+            <div className="w-full justify-end flex-row-reverse flex gap-2 pr-2">
               <ModeToggle />
 
-              <Button asChild variant="outline">
+              <Button asChild variant="ghost">
                 <Link href={"/sign-in"}>
                   <ShoppingCart />
                   <span className="text-xs md:text-sm">سبدخرید</span>
                 </Link>
               </Button>
 
-              <Button asChild variant="default">
-                <Link href={"/sign-in"}>
-                  <UserIcon />
-                  <span className="text-xs md:text-sm">ورود</span>
-                </Link>
-              </Button>
+              <UserButton />
             </div>
           </SheetContent>
         </Sheet>
