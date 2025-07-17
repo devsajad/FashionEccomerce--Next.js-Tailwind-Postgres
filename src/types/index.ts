@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import z from "zod";
-import { addToCartSchema, CartSchema } from "./../lib/validators";
+import { addToCartSchema } from "./../lib/validators";
 
 // not BEST PRACITE => single source of truth rule
 // export type Product = z.infer<typeof InsertProductSchema> & {
