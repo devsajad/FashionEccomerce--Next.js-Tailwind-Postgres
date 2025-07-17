@@ -1,6 +1,5 @@
-import React from "react";
+import { ClientSafeProduct } from "@/types";
 import ProductItem from "./ProductItem";
-import { Product } from "@/types";
 
 export default function ProductList({
   title,
@@ -8,7 +7,7 @@ export default function ProductList({
   limit,
 }: {
   title?: string;
-  data: Product[];
+  data: ClientSafeProduct[];
   limit?: number;
 }) {
   const limitedData = limit ? data.slice(0, limit) : data;
@@ -17,7 +16,7 @@ export default function ProductList({
       <h2 className="h2-bold mb-5">{title}</h2>
       {limitedData.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {limitedData.map((product: Product) => (
+          {limitedData.map((product: ClientSafeProduct) => (
             <ProductItem key={product.slug} product={product} />
           ))}
         </div>
