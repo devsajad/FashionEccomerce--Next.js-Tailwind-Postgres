@@ -26,10 +26,10 @@ export const signInUserSchema = z.object({
 
   password: z
     .string("رمز عبور الزامی است.")
-    .min(6, "رمز عبور باید حداقل 6 کاراکتر باشد."),
-  // .regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, {
-  //   message: "رمز عبور باید ترکیبی از حروف و اعداد باشد.",
-  // }),
+    .min(6, "رمز عبور باید حداقل 6 کاراکتر باشد.")
+    .regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, {
+      message: "رمز عبور باید ترکیبی از حروف و اعداد باشد.",
+    }),
 });
 
 export const signUpUserSchema = z
