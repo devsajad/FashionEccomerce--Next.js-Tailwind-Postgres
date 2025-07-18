@@ -1,7 +1,6 @@
 import ImageGallary from "@/components/ImageGallary";
 import AddToCart from "@/components/shared/product/AddToCart";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getProduct } from "@/lib/data-service";
 import { formatPrice } from "@/lib/utils";

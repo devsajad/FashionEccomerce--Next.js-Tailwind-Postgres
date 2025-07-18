@@ -21,7 +21,7 @@ export default function SignInForm() {
     <Form action={action} submitText="ورود به سایت" state={state}>
       <FormRow state={state} label="ایمیل" fieldName="email">
         <Input
-          defaultValue={"admin@mail.com"}
+          defaultValue={"sjdzarepur@mail.com"}
           autoComplete="email"
           id="email"
           type="text"
@@ -33,7 +33,7 @@ export default function SignInForm() {
 
       <FormRow state={state} label="پسورد" fieldName="password">
         <Input
-          defaultValue={123456}
+          defaultValue={"sajjad123"}
           autoComplete="current-password"
           id="password"
           type="password"
