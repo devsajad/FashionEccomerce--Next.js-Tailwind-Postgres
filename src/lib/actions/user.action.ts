@@ -14,6 +14,11 @@ export interface SigninFormState {
   };
 }
 
+export interface AddItemToCartState {
+  success: boolean;
+  message: string;
+}
+
 export interface SignupFormState {
   success: boolean;
   message: string;
@@ -24,6 +29,8 @@ export interface SignupFormState {
     confirmPassword?: string[];
   };
 }
+
+// --------- AUTH ACTIONS ---------------------
 
 export async function signInWithCredential(
   _prevState: SigninFormState,
@@ -152,4 +159,15 @@ export async function signUpUser(
 
 export async function signOutUser() {
   await signOut();
+}
+
+// ------------  CART ACTIONS ----------------
+export async function addItemToCart(
+  productId: string,
+  quantity: number
+): Promise<AddItemToCartState> {
+  return {
+    success: true,
+    message: "لطفا اینترنت خود را بررسی کنید",
+  };
 }

@@ -9,3 +9,5 @@ export const LATES_PRODUCTS_LIMIT =
 
 export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+
+export const PROTECTED_ROUTES = ["/admin", "/dashboard"];

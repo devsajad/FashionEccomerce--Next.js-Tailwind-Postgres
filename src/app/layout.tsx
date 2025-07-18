@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/constants";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 const EstedadSans = localFont({
   src: "./fonts/Estedad-FD.woff2",
@@ -33,6 +34,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster
+            closeButton
+            richColors
+            toastOptions={{
+              classNames: {
+                toast: "font-sans",
+              },
+            }}
+          />
           {children}
         </ThemeProvider>
       </body>

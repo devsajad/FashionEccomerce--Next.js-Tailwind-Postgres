@@ -22,8 +22,4 @@ export type ClientSafeProduct = Omit<Product, "rating"> & {
   rating: string;
 };
 
-export type AddToCart = z.infer<typeof addToCartSchema> & {
-  id: string;
-  cartId: string;
-  createdAt: Date;
-};
+export type AddToCartType = z.infer<typeof addToCartSchema>;

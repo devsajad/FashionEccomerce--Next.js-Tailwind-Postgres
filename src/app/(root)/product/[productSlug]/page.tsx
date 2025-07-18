@@ -1,4 +1,5 @@
 import ImageGallary from "@/components/ImageGallary";
+import AddToCart from "@/components/shared/product/AddToCart";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -13,6 +14,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
   if (!product) notFound();
 
   const {
+    id,
     name,
     category,
     description,
@@ -92,7 +94,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
             </CardContent>
             {stock > 0 && (
               <CardFooter>
-                <Button className="w-full">افزودن به سبد</Button>
+                <AddToCart productId={id} quantity={1}/>
               </CardFooter>
             )}
           </Card>

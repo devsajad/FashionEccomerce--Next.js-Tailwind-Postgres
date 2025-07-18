@@ -76,8 +76,8 @@ model User {
 model Cart {
   id String @id @default(cuid())
 
-  userId        String?    @unique // Make userId OPTIONAL
-  sessionCartId String?    @unique // Make this optional and unique
+  userId        String?    @unique // optional because we want to have guest cart
+  sessionCartId String?    @unique // after user login => session cart id 
   items         CartItem[]
 
   createdAt DateTime @default(now())
@@ -93,8 +93,8 @@ model CartItem {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
   productId String @db.Uuid
-  cartId   String
-  quantity Int
+  cartId    String
+  quantity  Int
 
   createdAt DateTime @default(now())
 

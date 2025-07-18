@@ -20,6 +20,7 @@ export default async function page({
 }) {
   const session = await auth();
   const { callbackUrl } = await searchParams;
+
   if (session?.user) redirect(callbackUrl || "/");
 
   return (
