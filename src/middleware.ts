@@ -1,7 +1,6 @@
-import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
-import { PROTECTED_ROUTES } from "./lib/constants";
 import { auth } from "./lib/auth";
+import { PROTECTED_ROUTES } from "./lib/constants";
 
 export async function middleware(request: NextRequest) {
   // --- Task 1: Authentication and Authorizatiaon ---
@@ -23,12 +22,11 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
   const sessionCartId = request.cookies.get("sessionCartId");
-  console.log("Session is : ", sessionCartId);
 
   if (sessionCartId) return response;
 
   // if session not exist create one
-  response.cookies.set("sessionCartId", nanoid());
+  response.cookies.set("sessionCartId", crypto.randomUUID());
   return response;
 }
 

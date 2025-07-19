@@ -65,6 +65,7 @@ export const addToCartSchema = z.object({
     .min(1, { message: "تعداد محصول الزامی است " }),
 });
 
+
 export const CartSchema = z.object({
   userId: z.cuid("شناسه کاربر نامعتبر است "),
   sessionCartId: z.string("session نامعتبر است"),

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { addItemToCart } from "@/lib/actions/user.action";
+import { addItemToCart } from "@/lib/actions/product.action"; 
 import { AddToCartType } from "@/types";
 import { Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ export default function AddToCart({ productId, quantity }: AddToCartType) {
         return;
       }
 
-      toast("با موفقیت به سبد خرید اضافه شد", {
+      toast(addToCartResult.message, {
         description: "برای مشاهده و ادامه خرید کلیک کنید",
         action: {
           label: "سبد خرید",
