@@ -33,8 +33,11 @@ export async function addItemToCart(
       return { success: false, message: "محصول مورد نظر یافت نشد." };
     }
 
-    const session = await auth();
-    const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+    const [session, sessionCartIdCookie] = await Promise.all([
+      auth(),
+      (await cookies()).get("sessionCartId"),
+    ]);
+    const sessionCartId = sessionCartIdCookie?.value;
 
     // 3. Find or create the cart
     const cart =
@@ -117,8 +120,12 @@ export async function removeItemFromCart(
 
   try {
     // Get Session and Cart
-    const session = await auth();
-    const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+    const [session, sessionCartIdCookie] = await Promise.all([
+      auth(),
+      (await cookies()).get("sessionCartId"),
+    ]);
+    const sessionCartId = sessionCartIdCookie?.value;
+
     const cart = await prisma.cart.findFirst({
       where: {
         OR: [{ userId: session?.user?.id }, { sessionCartId: sessionCartId }],
@@ -184,7 +191,7 @@ export async function removeItemFromCart(
 
     return {
       success: true,
-      message: "سبد خرید شما به‌روزرسانی شد",
+      message: "محصول با موفقیت از سبد حذف شد",
     };
   } catch (error) {
     console.error("removeItemFromCart action error:", error);

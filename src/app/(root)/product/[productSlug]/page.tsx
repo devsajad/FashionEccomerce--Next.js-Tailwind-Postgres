@@ -2,15 +2,16 @@ import ImageGallary from "@/components/ImageGallary";
 import AddToCart from "@/components/shared/product/AddToCart";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { getProduct } from "@/lib/data-service";
+import { getCartItem, getProduct } from "@/lib/data-service";
 import { formatPrice } from "@/lib/utils";
-import { notFound } from "next/navigation";
 
 async function page({ params }: { params: Promise<{ productSlug: string }> }) {
   const { productSlug } = await params;
-  const product = await getProduct(productSlug);
 
-  if (!product) notFound();
+  const product = await getProduct(productSlug);
+  const cartItem = await getCartItem(product.id);
+
+  const quantity = cartItem?.quantity || 0;
 
   const {
     id,
@@ -63,7 +64,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
 
         {/* action column */}
         <div>
-          <Card className="w-90/100 sm:w-70/100 mx-auto md:w-full">
+          <Card className="w-90/100 sm:w-70/100 mx-auto md:w-full h-43">
             <CardContent className="space-y-4">
               <div className="flex justify-between">
                 <p>قیمت</p>
@@ -93,7 +94,7 @@ async function page({ params }: { params: Promise<{ productSlug: string }> }) {
             </CardContent>
             {stock > 0 && (
               <CardFooter>
-                <AddToCart productId={id} quantity={1}/>
+                <AddToCart productId={id} quantity={quantity} />
               </CardFooter>
             )}
           </Card>
