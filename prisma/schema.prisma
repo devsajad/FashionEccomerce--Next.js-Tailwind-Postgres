@@ -8,6 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// MAIN TABLES
 model Category {
   id      Int       @id @default(autoincrement())
   name    String    @unique
@@ -43,8 +44,9 @@ model Product {
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
 
-  brandId Int
-  brand   Brand @relation(fields: [brandId], references: [id])
+  brandId  Int
+  brand    Brand      @relation(fields: [brandId], references: [id])
+  CartItem CartItem[]
 
   @@map("products")
 }
@@ -63,12 +65,47 @@ model User {
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt
 
-  accounts Account[]
-  sessions Session[]
+  Cart    Cart?
+  Session Session[]
+  Account Account[]
 
   @@map("users")
 }
 
+// ADD TO CART TABLES
+model Cart {
+  id String @id @default(cuid())
+
+  userId        String?    @unique // optional because we want to have guest cart
+  sessionCartId String?    @unique // after user login => session cart id 
+  items         CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // A user can be null for guest carts
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("carts")
+}
+
+model CartItem {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  productId String @db.Uuid
+  cartId    String
+  quantity  Int
+
+  createdAt DateTime @default(now())
+
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  Product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, productId])
+  @@map("cart_items")
+}
+
+// AUTHENTICATION TABLES
 model Account {
   userId            String
   type              String

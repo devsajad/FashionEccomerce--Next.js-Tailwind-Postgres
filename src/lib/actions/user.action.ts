@@ -1,9 +1,9 @@
 "use server";
-import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { signIn, signOut } from "../auth";
-import { signInUserSchema, signUpUserSchema } from "../validators";
 import { prisma } from "@/db/prisma";
 import { hashSync } from "bcrypt-ts-edge";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { signIn, signOut } from "../auth";
+import { SignInUserSchema, SignUpUserSchema } from "../validators";
 
 export interface SigninFormState {
   success: boolean;
@@ -30,7 +30,7 @@ export async function signInWithCredential(
   formData: FormData
 ): Promise<SigninFormState> {
   // 1. Input validation
-  const validatedFields = signInUserSchema.safeParse({
+  const validatedFields = SignInUserSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
@@ -81,7 +81,7 @@ export async function signUpUser(
   const rawFormData = Object.fromEntries(formData.entries());
 
   // 2. validation with zod
-  const validatedFields = signUpUserSchema.safeParse(rawFormData);
+  const validatedFields = SignUpUserSchema.safeParse(rawFormData);
 
   if (!validatedFields.success) {
     const fieldErrors = validatedFields.error.flatten().fieldErrors;
