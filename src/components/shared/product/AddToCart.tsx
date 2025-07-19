@@ -61,28 +61,19 @@ export default function AddToCart({ productId, quantity }: AddToCartType) {
   if (quantity === 0)
     return (
       <Button
-        className="w-full flex gap-0.5"
+        className="w-full flex gap-1"
         onClick={handleAddToCartClick}
         disabled={isPending}
       >
-        {isPending ? (
-          <>
-            <Spinner size="mini" />
-            <span> در حال افزودن ... </span>
-          </>
-        ) : (
-          <>
-            <Plus />
-            <span>افزودن به سبد</span>
-          </>
-        )}
+        {isPending ? <Spinner size="mini" /> : <Plus />}
+        <span>افزودن به سبد</span>
       </Button>
     );
 
   return isPending ? (
     <div className="w-full gap-1 flex justify-center items-center">
       <Spinner size="mini" />
-      <span className="text-sm text-foreground/70">درحال تغییر ...</span>
+      <span className="text-sm text-foreground/70">درحال بروزرسانی ...</span>
     </div>
   ) : (
     <div className="flex justify-between w-30 mx-auto items-center">
